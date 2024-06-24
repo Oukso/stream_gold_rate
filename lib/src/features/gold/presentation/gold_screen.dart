@@ -25,13 +25,12 @@ class GoldScreen extends StatelessWidget {
               StreamBuilder(
                 stream: getGoldPriceStream(),
                 builder: (context, snapshot) {
-                  if (snapshot.hasData &&
-                      snapshot.connectionState == ConnectionState.done) {
+                  if (snapshot.hasData) {
                     // FALL: Future ist komplett und hat Daten!
 
                     return Text(
                       NumberFormat.simpleCurrency(locale: 'de_DE')
-                          .format(goldPrice),
+                          .format(snapshot.data),
                       style: Theme.of(context)
                           .textTheme
                           .headlineLarge!
